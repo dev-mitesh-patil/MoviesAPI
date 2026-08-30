@@ -2,29 +2,18 @@ using Microsoft.EntityFrameworkCore;
 
 public class MovieRepository(AppDBContext _dbContext)
 {
-    public async Task AddMovie(MovieCreateDto movieCreateDto)
+    public async Task AddMovie(Movie movie)
     {
-        Movie movie = new Movie
-        {
-            Name = movieCreateDto.Name,
-            Description = movieCreateDto.Description,
-            ReleaseDate = movieCreateDto.ReleaseDate,
-            Rating = movieCreateDto.Rating
-        };
-
         _dbContext.Movies.Add(movie);
         await _dbContext.SaveChangesAsync();
     } 
-    public async Task<IEnumerable<MovieGetDto>> GetAllMovies()
+    public async Task<IEnumerable<Movie>> GetAllMovies()
     {
-        return await _dbContext.Movies
-        .Select(movie => new MovieGetDto
-        {
-            Id = movie.Id,
-            Name = movie.Name,
-            Description = movie.Description,
-            ReleaseDate = movie.ReleaseDate,
-            Rating = movie.Rating
-        }).ToListAsync();
+        return await _dbContext.Movies.ToListAsync();
+    }
+
+    public async Task<Movie?> GetMovieByName(string name)
+    {
+        return await _dbContext.Movies.Where(m => m.Name == name).FirstOrDefaultAsync();
     }
 }
