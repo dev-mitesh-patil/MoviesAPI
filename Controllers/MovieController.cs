@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
 [Route("api/[controller]")]
-public class MovieController(MovieService _movieService) : ControllerBase
+public class MovieController(IMovieService _movieService) : ControllerBase
 {
     [HttpPost]
     public async Task<IActionResult> CreateMovie([FromBody] MovieCreateDto movieCreateDto)
