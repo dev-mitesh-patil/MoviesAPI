@@ -31,4 +31,17 @@ public class MovieController(IMovieService _movieService) : ControllerBase
             return Problem(detail: ex.Message, title:"Unexpected Error occured");
         }
     }
+    [HttpGet("/{movieName}")]
+    public async Task<ActionResult<MovieGetDto>> GetMovieByName(string movieName)
+    {
+        try
+        {
+            return Ok(await _movieService.GetMovieByName(movieName));
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.StackTrace);
+            return Problem(detail: ex.Message, title:"Unexpected Error occured");
+        }
+    }
 }
