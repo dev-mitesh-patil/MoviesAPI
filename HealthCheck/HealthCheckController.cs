@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 public class HealthCheckController : ControllerBase
 {
     [HttpGet]
-    public IActionResult Healthy()
+    public IActionResult Get()
     {
         return Ok("Application is Running...");
     }
