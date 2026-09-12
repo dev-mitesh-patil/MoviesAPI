@@ -10,7 +10,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDBContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DBConnectionString"))
 );
-builder.Services.AddScoped<MovieService>();
+builder.Services.AddScoped<MovieRepository>();
+builder.Services.AddScoped<IMovieService, MovieService>();
 builder.Services.AddControllers();
 
 var app = builder.Build();

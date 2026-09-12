@@ -1,4 +1,4 @@
-public class MovieService(MovieRepository _movieRepository) : IMovieService
+public class MovieService(MovieRepository _movieRepository, ILogger<MovieService> _log) : IMovieService
 {
     public async Task AddMovie(MovieCreateDto movieCreateDto)
     {
