@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-public class MovieRepository(AppDBContext _dbContext, ILogger<MovieRepository> _log)
+public class MovieRepository(AppDBContext _dbContext)
 {
     public async Task AddMovie(Movie movie)
     {
